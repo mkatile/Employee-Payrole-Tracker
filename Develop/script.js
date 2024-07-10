@@ -3,21 +3,60 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // Collect employee data
 const collectEmployees = function() {
-  firstName: "Sandra",
-  lastName: "Porter",
-  salary: 18633
-    return;
-};
+  const employeesArray = [];
+  let addAnotherEmployee = true;
+
+  while(addAnotherEmployee){
+    const firstName = prompt("Enter employees first name:")
+    const lastName = prompt("Enter employees last name:")
+    let salary = prompt("Enter employees salary:")
+  
+/* Convert salary to a number and chech if the amount is valid */
+    salary = isNaN(Number(salary)) ? 0 : Number(salary);
+
+/* This is to create an employee object */
+    const employee = {
+      firstName: firstName,
+      lastName: lastName,
+      salary: salary,
+    };
+
+/* Adds employees details to the array */
+    employeesArray.push(employee);
+
+/* Ask user if they want to add another employee */
+    const continueAdding = confirm("Do you want to add another employee?")
+    if (!continueAdding){
+      addAnotherEmployee = false;
+    }
+}
+return employeesArray;
+}
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
+  const totalSalary = employeesArray.reduce((acc, employee) => acc + employee.salary, 0);
+  const averageSalary = totalSalary / employeesArray.length;
 
+/* Logs average employee salary to console with required message */
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is: $${(totalSalary / employeesArray.length).toLocaleString(undefined, {maximumFractionDigits: 2})}`);
 }
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
+  const randomIndex = Math.floor(Math.random() * employeesArray.length);
+  const randomEmployee = employeesArray[randomIndex];
+
+/* Logs random employee to the console with the required message */
+  console.log(`Congratulations to ${randomEmployee.firstName} ${randomEmployee.lastName}, our random drawing winner!`);
+  
+/* Sort employees alphabetically by last name */
+employeesArray.sort((a, b) => a.lastName.localeCompare(b.lastName));
+return employeesArray;
   
 }
+
+
 
 /*
   ====================
