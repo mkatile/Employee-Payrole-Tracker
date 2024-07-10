@@ -20,6 +20,7 @@ THEN I am presented with a series of prompts asking for first name, last name, a
  WHEN I choose to cancel 
  THEN my employee data is displayed on the page sorted alphabetically by last name, and the console shows computed and aggregated data
 
- Deplyment [link](http://127.0.0.1:3000/develop/index.html)
+ Deployment [link](http://127.0.0.1:3000/develop/index.html)
  
+
 
